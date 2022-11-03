@@ -31,6 +31,6 @@ A nice trip in Puerto Rico!
 
 # Link to page within the site
 
-[My Resume](about.html)
+[My Resume](About-Me.html)
 
-[Dashboard](Dashboard.html)
+[Dashboard](dashboard_1.html)

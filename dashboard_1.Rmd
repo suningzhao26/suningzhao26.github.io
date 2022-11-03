@@ -34,7 +34,7 @@ ny_noaa_tidy =
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Chart A：Minumum temperature vs Maximum temperature at January in different station from 2000 to 2010
 
 ```{r}
 ny_noaa_tidy %>% 
@@ -49,7 +49,7 @@ ny_noaa_tidy %>%
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Chart B: Snowfall(mm) record in January from 2000 to 2010
 
 ```{r}
 ny_noaa_tidy %>% 
@@ -65,7 +65,7 @@ ny_noaa_tidy %>%
   layout(showlegend = FALSE)
 ```
 
-### Chart C
+### Chart C: average precipitation(mm) in January from 2000 to 2010
 
 ```{r}
 ny_noaa_tidy %>% 
