@@ -8,7 +8,7 @@ navbar:
     - text: "My resume"
       href: About-Me.html
     - text: "NY NOAA Dashboard"
-      href: dashboard-1.html
+      href: dashboard_1.html
     - icon: fa-envelope fa-lg
       href: mailto:<suning_zhao@outlook.com>
     - icon: fa-github fa-lg

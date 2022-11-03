@@ -1,0 +1,83 @@
+---
+title: "NY NOAA Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+    css: bootstrap.css
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(p8105.datasets)
+library(tidyverse)
+library(plotly)
+```
+
+```{r}
+data("ny_noaa")
+
+ny_noaa_tidy =
+  ny_noaa %>% 
+  janitor::clean_names() %>% 
+  separate(col = date, into = c('year','month','day'), sep = "-" , convert = TRUE) %>% 
+  mutate(
+     month = month.name[month],
+     prcp = prcp / 10,
+     tmax = as.numeric(tmax),
+     tmin = as.numeric(tmin),
+     tmax = tmax / 10,
+     tmin = tmin / 10
+  ) 
+```
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+ny_noaa_tidy %>% 
+  filter(month == c("January")) %>% 
+  filter(year > 2000) %>%
+  group_by(id, year, month) %>%
+  mutate(text_label = str_c("year: ", year, "\nid:", id)) %>% 
+  plot_ly(x = ~tmin, y = ~tmax, text = ~text_label,
+          alpha = .5, type = "scatter", mode = "markers",colors = "viridis")
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+ny_noaa_tidy %>% 
+  filter(month == c("January")) %>% 
+  filter(0 < snow ) %>% 
+  filter(snow < 100) %>%
+  filter(year > 2000) %>% 
+  mutate(
+    year = as.factor(year)
+  ) %>% 
+  plot_ly(x = ~year, y = ~snow, 
+          alpha = .5, type = "box",colors = "viridis") %>% 
+  layout(showlegend = FALSE)
+```
+
+### Chart C
+
+```{r}
+ny_noaa_tidy %>% 
+  filter(month == c("January")) %>% 
+  filter(year > 2000) %>% 
+  group_by(year) %>% 
+  summarize(
+    prcp_average = mean(prcp, na.rm = TRUE)
+  ) %>% 
+  mutate(text_label = str_c("year: ", year, "\nprcp_average(mm):", prcp_average)) %>% 
+  plot_ly(x = ~year, y = ~prcp_average, 
+          alpha = .5, type = "scatter", text = ~text_label, mode = "lines",colors = "viridis") %>% 
+  layout(showlegend = FALSE)
+```
+
