@@ -8,7 +8,7 @@ output:
 
 # Loading data
 
-We're gonna look at NY NOAA data.
+We're gonna look at NY NOAA data. Since the dataset is very large, we only focus on January.
 
 ```{r}
 library(p8105.datasets)
@@ -40,15 +40,27 @@ ny_noaa_tidy =
 ```{r}
 ny_noaa_tidy %>% 
   filter(month == c("January")) %>% 
+  filter(year > 2000) %>%
   group_by(id, year, month) %>%
   mutate(text_label = str_c("year: ", year, "\nid:", id)) %>% 
   plot_ly(x = ~tmin, y = ~tmax, text = ~text_label,
           alpha = .5, type = "scatter", mode = "markers")
 ```
 
-
 ## boxplot
-
+```{r}
+ny_noaa_tidy %>% 
+  filter(month == c("January")) %>% 
+  filter(0 < snow ) %>% 
+  filter(snow < 100) %>%
+  filter(year > 2000) %>% 
+  mutate(
+    year = as.factor(year)
+  ) %>% 
+  plot_ly(x = ~year, y = ~snow, 
+          alpha = .5, type = "box") %>% 
+  layout(showlegend = FALSE)
+```
 
 ##  plot
 
