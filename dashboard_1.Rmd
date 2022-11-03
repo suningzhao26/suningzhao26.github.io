@@ -42,8 +42,12 @@ ny_noaa_tidy %>%
   filter(year > 2000) %>%
   group_by(id, year, month) %>%
   mutate(text_label = str_c("year: ", year, "\nid:", id)) %>% 
-  plot_ly(x = ~tmin, y = ~tmax, text = ~text_label,
-          alpha = .5, type = "scatter", mode = "markers",colors = "viridis")
+  plot_ly(x = ~tmin, y = ~tmax, text = ~text_label, color = ~year,
+          alpha = .5, type = "scatter", mode = "markers",colors = "viridis") %>% 
+  layout(title = "Minumum temperature vs Maximum temperature at January in different station from 2000 to 2010",
+         xaxis = list(title = "Minimum Temperature C"),
+         yaxis = list(title = "Maximum Temperature C")
+  )
 ```
 
 Column {data-width=350}
@@ -60,9 +64,12 @@ ny_noaa_tidy %>%
   mutate(
     year = as.factor(year)
   ) %>% 
-  plot_ly(x = ~year, y = ~snow, 
+  plot_ly(x = ~year, y = ~snow, color = ~year,
           alpha = .5, type = "box",colors = "viridis") %>% 
-  layout(showlegend = FALSE)
+  layout(title = "Snowfall(mm) record in January from 2000 to 2010",
+         xaxis = list(title = "year"),
+         yaxis = list(title = "Snowfall(mm)")
+  )
 ```
 
 ### Chart C: average precipitation(mm) in January from 2000 to 2010
@@ -78,6 +85,9 @@ ny_noaa_tidy %>%
   mutate(text_label = str_c("year: ", year, "\nprcp_average(mm):", prcp_average)) %>% 
   plot_ly(x = ~year, y = ~prcp_average, 
           alpha = .5, type = "scatter", text = ~text_label, mode = "lines",colors = "viridis") %>% 
-  layout(showlegend = FALSE)
+  layout(title = "Average precipitation(mm) in January from 2000 to 2010",
+         xaxis = list(title = "year"),
+         yaxis = list(title = "average precipitation(mm)")
+  )
 ```
 
