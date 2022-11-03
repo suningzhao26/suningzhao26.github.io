@@ -7,7 +7,7 @@ output:
     css: bootstrap.css
 ---
 
-# Hello! How are you today!
+# Hello! How are you today?
 
 * I am Suning, a 2nd year master of public health student at Columbia University, majoring in Biostatistics.
 * I graduated from Fudan University, Shanghai, China, with a Bachelor of Medicine degree, focusing in Basic Medical Science (Biomedicine)
