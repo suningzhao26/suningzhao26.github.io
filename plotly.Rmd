@@ -8,7 +8,7 @@ output:
 
 # Loading data
 
-We're gonna look at NY NOAA data. Since the dataset is very large, we only focus on January.
+We're gonna look at NY NOAA data. Since the dataset is very large, we only focus on January after 2000.
 
 ```{r}
 library(p8105.datasets)
@@ -44,7 +44,7 @@ ny_noaa_tidy %>%
   group_by(id, year, month) %>%
   mutate(text_label = str_c("year: ", year, "\nid:", id)) %>% 
   plot_ly(x = ~tmin, y = ~tmax, text = ~text_label,
-          alpha = .5, type = "scatter", mode = "markers")
+          alpha = .5, type = "scatter", mode = "markers",colors = "viridis")
 ```
 
 ## boxplot
@@ -58,9 +58,21 @@ ny_noaa_tidy %>%
     year = as.factor(year)
   ) %>% 
   plot_ly(x = ~year, y = ~snow, 
-          alpha = .5, type = "box") %>% 
+          alpha = .5, type = "box",colors = "viridis") %>% 
   layout(showlegend = FALSE)
 ```
 
-##  plot
-
+## line plot
+```{r}
+ny_noaa_tidy %>% 
+  filter(month == c("January")) %>% 
+  filter(year > 2000) %>% 
+  group_by(year) %>% 
+  summarize(
+    prcp_average = mean(prcp, na.rm = TRUE)
+  ) %>% 
+  mutate(text_label = str_c("year: ", year, "\nprcp_average(mm):", prcp_average)) %>% 
+  plot_ly(x = ~year, y = ~prcp_average, 
+          alpha = .5, type = "scatter", text = ~text_label, mode = "lines",colors = "viridis") %>% 
+  layout(showlegend = FALSE)
+```
