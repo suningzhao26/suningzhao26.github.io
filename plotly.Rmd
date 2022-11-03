@@ -1,5 +1,5 @@
 ---
-title: "Plotly examples"
+title: "Plotly"
 output: 
   html_document:
     toc: true
@@ -8,7 +8,7 @@ output:
 
 # Loading data
 
-We're gonna look at NYC Airbnb data.
+We're gonna look at NY NOAA data.
 
 ```{r}
 library(p8105.datasets)
@@ -37,6 +37,14 @@ ny_noaa_tidy =
 # Plotly plots
 
 ## Scatter plot
+```{r}
+ny_noaa_tidy %>% 
+  filter(month == c("January")) %>% 
+  group_by(id, year, month) %>%
+  mutate(text_label = str_c("year: ", year, "\nid:", id)) %>% 
+  plot_ly(x = ~tmin, y = ~tmax, text = ~text_label,
+          alpha = .5, type = "scatter", mode = "markers")
+```
 
 
 ## boxplot
