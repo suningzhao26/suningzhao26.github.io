@@ -7,13 +7,13 @@ navbar:
       href: index.html
     - text: "My resume"
       href: About-Me.html
-    - text: "Dashboard"
+    - text: "NY NOAA Dashboard"
       href: dashboard-1.html
     - icon: fa-envelope fa-lg
       href: mailto:<suning_zhao@outlook.com>
     - icon: fa-github fa-lg
       href: http://github.com/suningzhao26/
-    - icon: fa-brands fa-linkedin"
+    - icon: fa-brands fa-linkedin
       href: https://www.linkedin.com/in/suning-lily-zhao/
 output:
       html_document:
