@@ -1,0 +1,46 @@
+---
+title: "Plotly examples"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Loading data
+
+We're gonna look at NYC Airbnb data.
+
+```{r}
+library(p8105.datasets)
+library(tidyverse)
+library(plotly)
+```
+
+
+```{r}
+data("ny_noaa")
+
+ny_noaa_tidy =
+  ny_noaa %>% 
+  janitor::clean_names() %>% 
+  separate(col = date, into = c('year','month','day'), sep = "-" , convert = TRUE) %>% 
+  mutate(
+     month = month.name[month],
+     prcp = prcp / 10,
+     tmax = as.numeric(tmax),
+     tmin = as.numeric(tmin),
+     tmax = tmax / 10,
+     tmin = tmin / 10
+  ) 
+```
+
+# Plotly plots
+
+## Scatter plot
+
+
+## boxplot
+
+
+##  plot
+
