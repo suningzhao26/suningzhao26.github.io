@@ -1,0 +1,12 @@
+---
+title: "My resume"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    css: bootstrap.css
+---
+
+# Here is my resume
+
+![](resume/resume.pdf){width=100% height=1000}
